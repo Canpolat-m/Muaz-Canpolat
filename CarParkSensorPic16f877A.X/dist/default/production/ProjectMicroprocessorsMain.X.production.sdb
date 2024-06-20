@@ -1,0 +1,128 @@
+[p LITE_MODE AUTOSTATIC PIC14 PICREGULAR PICMID ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 16F877A ]
+[d frameptr 6 ]
+"6 C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\awdiv.c
+[v ___awdiv __awdiv `(i  1 e 2 0 ]
+"62 C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\float.c
+[v ___ftpack __ftpack `(f  1 e 3 0 ]
+"86 C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 3 0 ]
+"6 C:\Program Files (x86)\Microchip\xc8\v1.41\sources\pic\eeprom.c
+[v _eecpymem eecpymem `(v  1 e 1 0 ]
+"39
+[v _memcpyee memcpyee `(v  1 e 1 0 ]
+"27 C:\Users\canpo\MPLABXProjects\ProjectMicroprocessorsMain.X\ProjectClear.c
+[v _lcd_command lcd_command `(v  1 e 1 0 ]
+"43
+[v _lcd_data lcd_data `(v  1 e 1 0 ]
+"60
+[v _lcd_init lcd_init `(v  1 e 1 0 ]
+"70
+[v _lcd_str lcd_str `(v  1 e 1 0 ]
+"79
+[v _main main `(v  1 e 1 0 ]
+[s S43 . 1 `uc 1 RB0 1 0 :1:0 
+`uc 1 RB1 1 0 :1:1 
+`uc 1 RB2 1 0 :1:2 
+`uc 1 RB3 1 0 :1:3 
+`uc 1 RB4 1 0 :1:4 
+`uc 1 RB5 1 0 :1:5 
+`uc 1 RB6 1 0 :1:6 
+`uc 1 RB7 1 0 :1:7 
+]
+"224 C:\Program Files (x86)\Microchip\xc8\v1.41\include\pic16f877a.h
+[u S52 . 1 `S43 1 . 1 0 ]
+[v _PORTBbits PORTBbits `VES52  1 e 1 @6 ]
+"329
+[v _PORTD PORTD `VEuc  1 e 1 @8 ]
+[s S65 . 1 `uc 1 RD0 1 0 :1:0 
+`uc 1 RD1 1 0 :1:1 
+`uc 1 RD2 1 0 :1:2 
+`uc 1 RD3 1 0 :1:3 
+`uc 1 RD4 1 0 :1:4 
+`uc 1 RD5 1 0 :1:5 
+`uc 1 RD6 1 0 :1:6 
+`uc 1 RD7 1 0 :1:7 
+]
+"346
+[u S74 . 1 `S65 1 . 1 0 ]
+[v _PORTDbits PORTDbits `VES74  1 e 1 @8 ]
+[s S20 . 1 `uc 1 RE0 1 0 :1:0 
+`uc 1 RE1 1 0 :1:1 
+`uc 1 RE2 1 0 :1:2 
+]
+"402
+[u S24 . 1 `S20 1 . 1 0 ]
+[v _PORTEbits PORTEbits `VES24  1 e 1 @9 ]
+"623
+[v _TMR1L TMR1L `VEuc  1 e 1 @14 ]
+"629
+[v _TMR1H TMR1H `VEuc  1 e 1 @15 ]
+"635
+[v _T1CON T1CON `VEuc  1 e 1 @16 ]
+"1335
+[v _TRISB TRISB `VEuc  1 e 1 @134 ]
+"1457
+[v _TRISD TRISD `VEuc  1 e 1 @136 ]
+"1518
+[v _TRISE TRISE `VEuc  1 e 1 @137 ]
+"2657
+[v _TMR1ON TMR1ON `VEb  1 e 0 @128 ]
+"79 C:\Users\canpo\MPLABXProjects\ProjectMicroprocessorsMain.X\ProjectClear.c
+[v _main main `(v  1 e 1 0 ]
+{
+"102
+[v main@distance distance `ui  1 a 2 12 ]
+"129
+} 0
+"70
+[v _lcd_str lcd_str `(v  1 e 1 0 ]
+{
+[v lcd_str@str str `*.24DCCuc  1 a 1 wreg ]
+"72
+[v lcd_str@i i `uc  1 a 1 6 ]
+"70
+[v lcd_str@str str `*.24DCCuc  1 a 1 wreg ]
+[v lcd_str@n n `uc  1 p 1 3 ]
+"73
+[v lcd_str@str str `*.24DCCuc  1 a 1 5 ]
+"77
+} 0
+"43
+[v _lcd_data lcd_data `(v  1 e 1 0 ]
+{
+[v lcd_data@data data `uc  1 a 1 wreg ]
+[v lcd_data@data data `uc  1 a 1 wreg ]
+"45
+[v lcd_data@data data `uc  1 a 1 2 ]
+"58
+} 0
+"60
+[v _lcd_init lcd_init `(v  1 e 1 0 ]
+{
+"68
+} 0
+"27
+[v _lcd_command lcd_command `(v  1 e 1 0 ]
+{
+[v lcd_command@cmd cmd `uc  1 a 1 wreg ]
+[v lcd_command@cmd cmd `uc  1 a 1 wreg ]
+"29
+[v lcd_command@cmd cmd `uc  1 a 1 2 ]
+"42
+} 0
+"6 C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\awdiv.c
+[v ___awdiv __awdiv `(i  1 e 2 0 ]
+{
+"11
+[v ___awdiv@quotient quotient `i  1 a 2 7 ]
+"12
+[v ___awdiv@sign sign `uc  1 a 1 6 ]
+[v ___awdiv@counter counter `uc  1 a 1 5 ]
+"6
+[v ___awdiv@divisor divisor `i  1 p 2 0 ]
+[v ___awdiv@dividend dividend `i  1 p 2 2 ]
+"42
+} 0
