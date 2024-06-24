@@ -3,37 +3,38 @@
            
 #define _XTAL_FREQ 8000000    // define the oscillator frequency 8 MHz
 #pragma config FOSC = HS        // Oscillator Selection bits (HS oscillator)
-#pragma config WDTE = OFF       // Watchdog Timer Enable bit (WDT disabled)
-#pragma config PWRTE = OFF      // Power-up Timer Enable bit (PWRT disabled)
+#pragma config WDTE = OFF       
+#pragma config PWRTE = OFF      
 #pragma config BOREN = OFF      // Brown-out Reset Enable bit (BOR disabled)
-#pragma config LVP = ON         // Low-Voltage (Single-Supply) In-Circuit Serial Programming Enable bit (RB3 is digital I/O, HV on MCLR must be used for programming)
-#pragma config CPD = OFF        // Data EEPROM Memory Code Protection bit (Data EEPROM code protection off)
+#pragma config LVP = ON         
+#pragma config CPD = OFF        
 #pragma config WRT = OFF        // Flash Program Memory Write Enable bits (Write protection off; all program memory may be written to by EECON control)
-#pragma config CP = OFF         // Flash Program Memory Code Protection bit (Code protection off)
+#pragma config CP = OFF         
+
 
 #define RS PORTCbits.RC4              
 #define EN PORTCbits.RC5        
 
 
 void lcd_cmd(unsigned char cmd) {
-    PORTD = (cmd & 0xF0);       // Send higher nibble
-    EN = 1;                     // Enable high
-    RS = 0;                     // Command mode
-    __delay_ms(10);             // Delay
-    EN = 0;                     // Enable low
-    PORTD = ((cmd << 4) & 0xF0);// Send lower nibble
-    EN = 1;                     // Enable high
+    PORTD = (cmd & 0xF0);       
+    EN = 1;                     
+    RS = 0;                     
+    __delay_ms(10);             
+    EN = 0;                     
+    PORTD = ((cmd << 4) & 0xF0);
+    EN = 1;                  
     //RW = 0;                     // Write operation
-    RS = 0;                     // Command mode
-    __delay_ms(10);             // Delay
+    RS = 0;                     
+    __delay_ms(10);             
     EN = 0;                     // Enable low
 }
 
 // Function to send data to the LCD
 void lcd_data(unsigned char data) {
     PORTD = (data & 0xF0);      // Send higher nibble
-    EN = 1;                     // Enable high
-    RS = 1;                     // Data mode
+    EN = 1;                     
+    RS = 1;                     
     __delay_ms(10);             // Delay
     EN = 0;                     
     PORTD = ((data << 4) & 0xF0);
@@ -46,12 +47,12 @@ void lcd_data(unsigned char data) {
 // Function to initialize the LCD
 void lcd_init() {
     
-    lcd_cmd(0x02);              // Initialize LCD in 4-bit mode
-    lcd_cmd(0x28);              // 4-bit mode, 2 lines, 5x7 matrix
+    lcd_cmd(0x02);             
+    lcd_cmd(0x28);              
     lcd_cmd(0x0C);              // Display on, cursor off
     lcd_cmd(0x06);              // Increment cursor
-    lcd_cmd(0x01);              // Clear display
-    __delay_ms(20);             // Delay
+    lcd_cmd(0x01);           
+    __delay_ms(20);            
     
 }
 
@@ -59,7 +60,7 @@ void lcd_init() {
 void Lcd_string(const unsigned char *str, unsigned char num) {
     unsigned char i;
     for(i = 0; i < num; i++) {
-        lcd_data(str[i]);       // Send each character to the LCD
+        lcd_data(str[i]);      
     }
 }
 
@@ -73,27 +74,27 @@ void main() {
     __delay_ms(10);
     
     int a = 0;
-    TRISB = 0b00010000;         //RB4 & 5 as Input PIN (ECHO)
+    TRISB = 0b00010000;        
 
     T1CON = 0x10;
     
     
-    lcd_cmd(0x85);  // Set cursor position
+    lcd_cmd(0x85);  
         __delay_ms(10);
-        Lcd_string("CAUTION", 7); // Display "L" for left sensor
+        Lcd_string("CAUTION", 7);
         __delay_ms(10); 
-    while(1) {                  // Infinite loop
-        TMR1H = 0;                //Sets the Initial Value of Timer
-        TMR1L = 0;                //Sets the Initial Value of Timer
+    while(1) {               
+        TMR1H = 0;                
+        TMR1L = 0;                
 
-        PORTBbits.RB5 = 1;                  //TRIGGER HIGH
-        __delay_us(10);           //10uS Delay 
-        PORTBbits.RB5 = 0;                  //TRIGGER LOW
+        PORTBbits.RB5 = 1;                 
+        __delay_us(10);          
+        PORTBbits.RB5 = 0;                 
                 
-        while(!PORTBbits.RB4);              //Waiting for Echo
-        TMR1ON = 1;               //Timer Starts
-        while(PORTBbits.RB4);               //Waiting for Echo goes LOW
-        TMR1ON = 0;               //Timer Stops
+        while(!PORTBbits.RB4);              
+        TMR1ON = 1;              
+        while(PORTBbits.RB4);               
+        TMR1ON = 0;               
 
         distance = ((TMR1L | (TMR1H<<8))/58)+1;
         
